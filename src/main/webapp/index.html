@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Graphs</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="./dist/bundle.css">
+  <script src="./dist/main.js"></script>
+</head>
+
+<body id="content" onload="graph.initializeSlider(); graph.generateGraph()">
+  <h2 class="center-txt">
+    Graph Visualization Tool
+  </h2>
+  <div id="input-boxes">
+    <!-- Box for filtering the graph -->
+    <div id="search-box" class="input-child">
+      <h4 class="search-title">Filter the Graph</h4>
+      <label for="layers">Radius from filtered node(s) (0-20, default is 3):</label>
+      <input type="number" id="num-layers" name="layers" min="0" max="20" value="3">
+      <label for="search-name">Names of comma-separated nodes to filter for </label>
+      <input type="text" id="node-name-filter" name="search-name" placeholder="nodeName1,nodeName2"></input>
+      <label for="token-name">Name of token to filter for</label>
+      <input type="text" id="token-name-filter" name="token-name" placeholder="Token Name"></input>
+      <span>
+        <label id="limit-mutations-text" for="limit-mutations">Check to show only mutations relevant to the searched nodes (please check before you generate the graph!)</label>
+        <input type="checkbox" id="limit-mutations" name="limit-mutations">
+      </span>
+      <button id="gen-graph" onclick="graph.generateGraph()">Get Graph</button>
+      <!-- Displaying the current mutation number -->
+      <div id="num-mutation-display">
+        <p id="graph-number-text">Step </p>
+        <input type="number" id="graph-number" min="0" max="0" value="0"
+          onchange="graph.readGraphNumberInput(); graph.generateGraph()">
+        <p id="total-mutation-number-text">out of 0</p>
+      </div>
+      <a href="https://docs.google.com/document/d/1fv7uy0ZIrj-gdoZdGWPDZIPHEG5BYkd1FsiiTPLIv_M/edit?usp=sharing">
+        <img alt="Documentation" class="docicon" src="https://cdn.iconscout.com/icon/free/png-512/documentation-1502741-1272951.png">
+      </a>
+    </div>
+    <!-- Box for zooming in -->
+    <div id="zoom-box" class="input-child">
+      <h4 class="search-title">Zoom In</h4>
+      <label>Zoom in on Node in Graph: </label>
+      <input type="text" id="node-search" placeholder="Node Name"></input>
+      <button id="search-node-button">Find Node</button>
+
+      <label>Zoom in on Token in Graph: (cannot be used simultaneously with above)</label>
+      <input type="text" id="token-search" placeholder="Token Name"></input>
+      <button id="search-token-button">Find Token</button>
+      <div>
+        <label for="highlight-number">Node: </label>
+        <input type="number" id="highlight-number" min="0" value="0" max="0" disabled=true>
+        <label id="num-selected">out of 0</label>
+        <button id="prevnode" class="material-icons nodebutton" disabled=true>navigate_before</button>
+        <button id="nextnode" class="material-icons nodebutton" disabled=true>navigate_next</button>
+        <button id="reset" class="reset">Reset Zoom Effects</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="graph-content">
+    <!-- COLUMN 1: main column -->
+    <div class="graph-content-column" id="graph-content-main">
+      <div id="graphdiv">
+        <div id="graph"></div>
+        <p id="buttontext">Navigate to the next and previous graph using the buttons below:</p>
+        <div id="buttondiv">
+          <button id="prevbutton" class="nextprev material-icons"
+            onclick="graph.navigateGraph(-1); graph.generateGraph()">navigate_before</button>
+          <button id="nextbutton" class="nextprev material-icons"
+            onclick="graph.navigateGraph(1); graph.generateGraph()">navigate_next</button>
+        </div>
+        <label id="show-mutation-text" for="show-mutations">Select this checkbox to show the mutated nodes in the
+          graph</label><br>
+        <input type="checkbox" id="show-mutations" name="show-mutations" checked=true>
+
+        <!-- Slider code begins -->
+        <label id="slider-text" for="slider">Use the slider to adjust the index of the currently displayed
+          mutation</label>
+        <div id="slider" class="mdc-slider mdc-slider--discrete mdc-slider--display-markers" tabindex="0" role="slider"
+          aria-valuemin="0" aria-valuemax="0" aria-valuenow="0" aria-label="Select Value">
+          <div class="mdc-slider__track-container">
+            <div class="mdc-slider__track"></div>
+            <div class="mdc-slider__track-marker-container"></div>
+          </div>
+          <div class="mdc-slider__thumb-container">
+            <div class="mdc-slider__pin">
+              <span class="mdc-slider__pin-value-marker"></span>
+            </div>
+            <svg class="mdc-slider__thumb" width="21" height="21">
+              <circle cx="10.5" cy="10.5" r="7.875"></circle>
+            </svg>
+            <div class="mdc-slider__focus-ring"></div>
+          </div>
+        </div>
+        <!-- Slider code ends -->
+      </div>
+    </div>
+    <!-- COLUMN 2: includes messages -->
+    <div class="graph-content-column" id="graph-content-logs">
+      <button id="clear-log-btn" onclick="graph.clearLogs()">Clear Logs</button>
+      <div id="graph-content-logs-inner">
+        <ul id="log-list">
+          <li class="log-msg">Welcome to our application! Here you'll see a log of messages pertaining to the graph on
+            the left. Enjoy! :)
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <a href="https://docs.google.com/document/d/1fv7uy0ZIrj-gdoZdGWPDZIPHEG5BYkd1FsiiTPLIv_M/edit?usp=sharing">
+    <img alt="Documentation" class="docicon" src="https://cdn.iconscout.com/icon/free/png-512/documentation-1502741-1272951.png">
+  </a>
+</body>
+</html>

@@ -1,0 +1,218 @@
+@use "@material/slider";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,400&display=swap");
+@include slider.core-styles;
+
+/* Define color scheme of page */
+:root {
+  --errorordeleted: red;
+  --gray: #d3d3d3;
+  --btn-color: #b590ca;
+  --box-bg: #ddf3f5;
+  --dark-gray: #5d5b6a;
+  --disabled-txt: #999;
+  --added: green;
+}
+
+h2,
+h4 {
+  margin: 0 auto;
+}
+
+.center-txt {
+  text-align: center;
+}
+
+.search-title {
+  margin-bottom: 20px;
+}
+
+button {
+  background-color: var(--gray);
+  color: black;
+  font-size: 16px;
+  border-radius: 10px;
+  margin: 5px;
+  padding: 5px;
+  border-width: 0;
+  outline: none;
+}
+
+button:hover:enabled {
+  font-weight: bold;
+  color: white;
+  background-color: var(--dark-gray);
+  cursor: pointer;
+}
+
+button:disabled,
+button[disabled] {
+  color: var(--disabled-txt);
+}
+
+body {
+  margin: 50px;
+  font-size: 20px;
+  font-family: "Roboto", sans-serif;
+}
+
+#graph {
+  width: 90%;
+  height: 65vh;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-top: 0;
+  margin-bottom: 40px;
+  border: solid 5px black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px;
+}
+
+#errortext {
+  color: var(--errorordeleted);
+  font-size: 25px;
+}
+
+.metadata {
+  overflow-y: auto;
+  overflow-x: auto;
+  white-space: nowrap;
+  height: 200px;
+  font-size: 30px;
+  padding: 20px;
+}
+
+.tokenlist {
+  list-style-type: none;
+  padding-left: 0px;
+}
+
+.close-button {
+  position: fixed;
+  left: 110%;
+}
+
+#buttondiv,
+#buttontext,
+#show-mutations,
+#show-mutation-text,
+#slider,
+#slider-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+}
+
+#show-mutations {
+  margin: auto;
+}
+
+#graphdiv {
+  display: block;
+}
+
+.nextprev {
+  margin: 0px 20px;
+  padding: 0;
+}
+
+#graph-content {
+  display: flex;
+  flex-direction: row;
+}
+
+#graph-content-main {
+  flex: 80%;
+}
+
+#graph-content-logs {
+  flex: 20%;
+  max-height: 60vh;
+}
+
+#graph-content-logs-inner {
+  background-color: var(--gray);
+  border-radius: 10px;
+  max-height: 75vh;
+  overflow-y: scroll;
+  margin-right: 20px;
+  height: 100%;
+}
+
+#log-list {
+  font-size: 15px;
+  list-style: none;
+  padding: 15px;
+}
+
+#log-list > li {
+  margin: 10px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+#graph-number-text,
+#graph-number,
+#total-mutation-number-text {
+  margin: 5px;
+  display: inline;
+}
+
+.recent-log-text {
+  color: var(--errorordeleted);
+}
+
+.error-text {
+  color: var(--errorordeleted);
+}
+
+.reset {
+  width: 160px;
+  display: block;
+}
+
+#input-boxes {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+
+.input-child {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--box-bg);
+  border-radius: 15px;
+  margin: 15px;
+}
+
+.clear-log {
+  position: absolute;
+  bottom: 0;
+}
+
+input {
+  padding: 5px;
+}
+
+.deletedtoken {
+  color: var(--errorordeleted);
+}
+
+.addedtoken {
+  color: var(--added);
+}
+
+.nodebutton {
+  display: none;
+}
+
+.docicon {
+  height: 20px;
+  width: 20px;
+  display: block;
+  float: right;
+}
